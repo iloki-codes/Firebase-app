@@ -60,12 +60,11 @@ const App = ({authState}) => {
         requestPermission()
         const subscriber = auth().onAuthStateChanged(onAuthStateChanged)
         return subscriber
-
-        if (authState.loading) {
-            return <EmptyContainer/>
-        }
     }, [])
 
+    if (authState.loading) {
+        return <EmptyContainer/>
+    }
     
     return(
         <>
@@ -90,8 +89,8 @@ const App = ({authState}) => {
     )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) => ({
     authState : state.auth
-}
+})
 
 export default connect(mapStateToProps)(App);
