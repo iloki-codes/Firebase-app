@@ -87,14 +87,15 @@ const AddPost = ({navigation, useState}) => {
 
           const uid = shortid.generate()
 
-          await database().ref(`/posts/${uid}`).startAt({
+          await database().ref(`/posts/${uid}`).set({
             location,
             description,
             picture: image,
             by: userState.name,
             date: Date.now(),
             instaId: userState.instaUserName,
-            userImage: userState.image
+            userImage: userState.image,
+            id: uid
           })
           console.log("Post Added Successfully");
           navigation.navigate('Home')
@@ -199,4 +200,3 @@ const styles = StyleSheet.create({
     image: {width: null, height: 150, marginVertical: 15},
     progress: {width: null, marginBottom: 20},
   });
-  
